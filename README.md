@@ -25,7 +25,7 @@ Vue.use(VueDropzone);
 ### Options
 ```js
 <template>
-	<div class="el" v-dropzone:[dropzoneOptions.active]="dropzoneOptions"></div>
+  <div class="el" v-dropzone:[dropzoneOptions.active]="dropzoneOptions"></div>
 </template>
 <script>
 export default {
@@ -47,9 +47,9 @@ export default {
     onDropzoneDragEnter() {},
 		onDropzoneDragLeave() {},
 		onDropzoneUpload(file) { // file is the ArrayBuffer
-		let  binarySrc  =  new  Uint8Array(file);
-},
-onDropzoneUploadError(msg) {}, // msg is the Error message
+		  let  binarySrc  =  new  Uint8Array(file);
+    },
+    onDropzoneUploadError(msg) {}, // msg is the Error message
   }
 }
 </script>
