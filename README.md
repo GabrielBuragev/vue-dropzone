@@ -34,7 +34,7 @@ export default {
       dropzoneOptions: {
         // `active` is a directive toggler ( whether the dropzone should be active or not ) 
         active: true,
-        extensions: ["pdf"], // List of extensions that the dropzone will accept
+        extensions: ["pdf"], // List of file extensions that the dropzone will accept
         // Below are all of the accepted callbacks
         onSuccess: this.onDropzoneUpload.bind(this),
         onError: this.onDropzoneUploadError.bind(this),
