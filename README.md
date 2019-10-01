@@ -1,11 +1,11 @@
 
-#  vue_dropzone_directive
+#  vue-dropzone
 
 Its a simple Vue.js dropzone directive.
 
 ### Usage inside component
 ```js
-import VueDropzone from "vue_dropzone_directive";
+import VueDropzone from "vue-dropzone";
 export default {
   directives: {
     'dropzone': VueDropzone
@@ -15,7 +15,7 @@ export default {
 
 ### Global usage
 ```js
-import  VueDropzone  from  "vue_dropzone_directive";
+import  VueDropzone  from  "vue-dropzone";
 Vue.use(VueDropzone);
 
 # inside component
