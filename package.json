@@ -1,22 +1,15 @@
 {
-  "name": "vue_dropzone_directive",
+  "name": "vue-dropzone",
   "version": "1.0.0",
-  "description": "",
-  "main": "dist/vue-dropzone.js",
-  "module": "./src/index.js",
+  "description": "Simple dropzone directive for Vue.js",
+  "main": "dist/vue-dropzone.umd.js",
+  "module": "dist/vue-dropzone.es.js",
+  "unpkg": "dist/vue-dropzone.min.js",
   "scripts": {
     "build": "rollup -c"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GabrielBuragev/vue_dropzone_directive.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GabrielBuragev/vue_dropzone_directive/issues"
-  },
-  "homepage": "https://github.com/GabrielBuragev/vue_dropzone_directive#readme",
   "dependencies": {
     "simple-dropzone": "^0.7.0"
   },
@@ -31,6 +24,8 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "rollup": "^0.47.4",
-    "rollup-plugin-babel": "^3.0.2"
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-vue2": "^0.8.1"
   }
 }

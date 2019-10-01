@@ -1,5 +1,8 @@
-var VueDropzone = (function (exports, Vue, simpleDropzone) {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue'), require('simple-dropzone')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'vue', 'simple-dropzone'], factory) :
+  (global = global || self, factory(global.VueDropzone = {}, global.Vue, global.simpleDropzone));
+}(this, function (exports, Vue, simpleDropzone) { 'use strict';
 
   Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
 
@@ -116,6 +119,6 @@ var VueDropzone = (function (exports, Vue, simpleDropzone) {
 
   exports.default = VueDropzone;
 
-  return exports;
+  Object.defineProperty(exports, '__esModule', { value: true });
 
-}({}, Vue, simpleDropzone));
+}));
