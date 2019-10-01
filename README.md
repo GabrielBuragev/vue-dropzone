@@ -45,9 +45,9 @@ export default {
   },
   methods: {
     onDropzoneDragEnter() {},
-		onDropzoneDragLeave() {},
-		onDropzoneUpload(file) { // file is the ArrayBuffer
-		  let  binarySrc  =  new  Uint8Array(file);
+    onDropzoneDragLeave() {},
+    onDropzoneUpload(file) { // file is the ArrayBuffer
+      let binarySrc = new Uint8Array(file);
     },
     onDropzoneUploadError(msg) {}, // msg is the Error message
   }
