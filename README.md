@@ -31,25 +31,25 @@ Vue.use(VueDropzone);
 export default {
   data(){
     return {
-	  dropzoneOptions: {
-		// `active` is a directive toggler ( whether the dropzone should be active or not ) 
-		active: true,
-		extensions: ["pdf"], // List of extensions that the dropzone will accept
-		// Below are all of the accepted callbacks
-		onSuccess: this.onDropzoneUpload.bind(this),
-		onError: this.onDropzoneUploadError.bind(this),
-		onDragEnter: this.onDropzoneDragEnter.bind(this),
-		onDragLeave: this.onDropzoneDragLeave.bind(this)
-	  }
-	}
+      dropzoneOptions: {
+        // `active` is a directive toggler ( whether the dropzone should be active or not ) 
+        active: true,
+        extensions: ["pdf"], // List of extensions that the dropzone will accept
+        // Below are all of the accepted callbacks
+        onSuccess: this.onDropzoneUpload.bind(this),
+        onError: this.onDropzoneUploadError.bind(this),
+        onDragEnter: this.onDropzoneDragEnter.bind(this),
+        onDragLeave: this.onDropzoneDragLeave.bind(this)
+      }
+    }
   },
   methods: {
     onDropzoneDragEnter() {},
-    onDropzoneDragLeave() {},
-	onDropzoneUpload(file) { // file is the ArrayBuffer
+		onDropzoneDragLeave() {},
+		onDropzoneUpload(file) { // file is the ArrayBuffer
 		let  binarySrc  =  new  Uint8Array(file);
-	},
-	onDropzoneUploadError(msg) {}, // msg is the Error message
+},
+onDropzoneUploadError(msg) {}, // msg is the Error message
   }
 }
 </script>
