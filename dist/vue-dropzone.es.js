@@ -2,6 +2,7 @@ import Vue from 'vue';
 import { SimpleDropzone } from 'simple-dropzone';
 import _regeneratorRuntime from '@babel/runtime/regenerator';
 import _asyncToGenerator from '@babel/runtime/helpers/asyncToGenerator';
+import _extends from '@babel/runtime/helpers/extends';
 
 var Dropzone = function Dropzone(params) {
   var defaultDropzoneOptions = {
@@ -14,7 +15,8 @@ var Dropzone = function Dropzone(params) {
   };
   var lastenter;
   var fExtensionMatch = /\.([0-9a-z]+)(?:[\?#]|$)/i;
-  Object.assign(defaultDropzoneOptions, params);
+
+  _extends(defaultDropzoneOptions, params);
 
   this.onDrop =
   /*#__PURE__*/

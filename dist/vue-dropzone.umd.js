@@ -1,12 +1,13 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue'), require('simple-dropzone'), require('@babel/runtime/regenerator'), require('@babel/runtime/helpers/asyncToGenerator')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'vue', 'simple-dropzone', '@babel/runtime/regenerator', '@babel/runtime/helpers/asyncToGenerator'], factory) :
-  (global = global || self, factory(global.VueDropzone = {}, global.Vue, global.simpleDropzone, global._regeneratorRuntime, global._asyncToGenerator));
-}(this, function (exports, Vue, simpleDropzone, _regeneratorRuntime, _asyncToGenerator) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue'), require('simple-dropzone'), require('@babel/runtime/regenerator'), require('@babel/runtime/helpers/asyncToGenerator'), require('@babel/runtime/helpers/extends')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'vue', 'simple-dropzone', '@babel/runtime/regenerator', '@babel/runtime/helpers/asyncToGenerator', '@babel/runtime/helpers/extends'], factory) :
+  (global = global || self, factory(global.VueDropzone = {}, global.Vue, global.simpleDropzone, global._regeneratorRuntime, global._asyncToGenerator, global._extends));
+}(this, function (exports, Vue, simpleDropzone, _regeneratorRuntime, _asyncToGenerator, _extends) { 'use strict';
 
   Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
   _regeneratorRuntime = _regeneratorRuntime && _regeneratorRuntime.hasOwnProperty('default') ? _regeneratorRuntime['default'] : _regeneratorRuntime;
   _asyncToGenerator = _asyncToGenerator && _asyncToGenerator.hasOwnProperty('default') ? _asyncToGenerator['default'] : _asyncToGenerator;
+  _extends = _extends && _extends.hasOwnProperty('default') ? _extends['default'] : _extends;
 
   var Dropzone = function Dropzone(params) {
     var defaultDropzoneOptions = {
@@ -19,7 +20,8 @@
     };
     var lastenter;
     var fExtensionMatch = /\.([0-9a-z]+)(?:[\?#]|$)/i;
-    Object.assign(defaultDropzoneOptions, params);
+
+    _extends(defaultDropzoneOptions, params);
 
     this.onDrop =
     /*#__PURE__*/

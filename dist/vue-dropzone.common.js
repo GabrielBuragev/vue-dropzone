@@ -8,6 +8,7 @@ var Vue = _interopDefault(require('vue'));
 var simpleDropzone = require('simple-dropzone');
 var _regeneratorRuntime = _interopDefault(require('@babel/runtime/regenerator'));
 var _asyncToGenerator = _interopDefault(require('@babel/runtime/helpers/asyncToGenerator'));
+var _extends = _interopDefault(require('@babel/runtime/helpers/extends'));
 
 var Dropzone = function Dropzone(params) {
   var defaultDropzoneOptions = {
@@ -20,7 +21,8 @@ var Dropzone = function Dropzone(params) {
   };
   var lastenter;
   var fExtensionMatch = /\.([0-9a-z]+)(?:[\?#]|$)/i;
-  Object.assign(defaultDropzoneOptions, params);
+
+  _extends(defaultDropzoneOptions, params);
 
   this.onDrop =
   /*#__PURE__*/
