@@ -8,17 +8,17 @@
   _regeneratorRuntime = _regeneratorRuntime && _regeneratorRuntime.hasOwnProperty('default') ? _regeneratorRuntime['default'] : _regeneratorRuntime;
   _asyncToGenerator = _asyncToGenerator && _asyncToGenerator.hasOwnProperty('default') ? _asyncToGenerator['default'] : _asyncToGenerator;
 
-  let Dropzone = function (params) {
-    let defaultDropzoneOptions = {
+  var Dropzone = function Dropzone(params) {
+    var defaultDropzoneOptions = {
       extensions: ["pdf"],
       maxFile: 1,
-      onSuccess: function () {},
-      onError: function () {},
-      onDragEnter: function () {},
-      onDragLeave: function () {}
+      onSuccess: function onSuccess() {},
+      onError: function onError() {},
+      onDragEnter: function onDragEnter() {},
+      onDragLeave: function onDragLeave() {}
     };
-    let lastenter;
-    let fExtensionMatch = /\.([0-9a-z]+)(?:[\?#]|$)/i;
+    var lastenter;
+    var fExtensionMatch = /\.([0-9a-z]+)(?:[\?#]|$)/i;
     Object.assign(defaultDropzoneOptions, params);
 
     this.onDrop =
@@ -26,44 +26,45 @@
     function () {
       var _ref = _asyncToGenerator(
       /*#__PURE__*/
-      _regeneratorRuntime.mark(function _callee({
-        files: files
-      }) {
-        var filesObjects, fObject, fileExtension, msg, file, fileBuffer;
+      _regeneratorRuntime.mark(function _callee(_ref2) {
+        var files, filesObjects, fObject, fileExtension, msg, file, fileBuffer;
         return _regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              defaultDropzoneOptions.onDragLeave();
-              filesObjects = files.entries();
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                files = _ref2.files;
+                defaultDropzoneOptions.onDragLeave();
+                filesObjects = files.entries();
 
-            case 2:
-              if (!(fObject = filesObjects.next().value)) {
-                _context.next = 14;
-                break;
-              }
+              case 3:
+                if (!(fObject = filesObjects.next().value)) {
+                  _context.next = 15;
+                  break;
+                }
 
-              fileExtension = fObject[0].match(fExtensionMatch);
+                fileExtension = fObject[0].match(fExtensionMatch);
 
-              if (!(!fileExtension || !defaultDropzoneOptions.extensions.includes(fileExtension[1]))) {
-                _context.next = 7;
-                break;
-              }
+                if (!(!fileExtension || !defaultDropzoneOptions.extensions.includes(fileExtension[1]))) {
+                  _context.next = 8;
+                  break;
+                }
 
-              msg = ["Invalid file extension - ", fileExtension[0]].join("");
-              return _context.abrupt("return", defaultDropzoneOptions.onError(msg));
+                msg = ["Invalid file extension - ", fileExtension[0]].join("");
+                return _context.abrupt("return", defaultDropzoneOptions.onError(msg));
 
-            case 7:
-              file = fObject[1];
-              _context.next = 10;
-              return file.arrayBuffer();
+              case 8:
+                file = fObject[1];
+                _context.next = 11;
+                return file.arrayBuffer();
 
-            case 10:
-              fileBuffer = _context.sent;
-              return _context.abrupt("return", defaultDropzoneOptions.onSuccess(fileBuffer));
+              case 11:
+                fileBuffer = _context.sent;
+                return _context.abrupt("return", defaultDropzoneOptions.onSuccess(fileBuffer));
 
-            case 14:
-            case "end":
-              return _context.stop();
+              case 15:
+              case "end":
+                return _context.stop();
+            }
           }
         }, _callee);
       }));
@@ -91,12 +92,12 @@
     };
   };
 
-  let Dropzone$1;
-  let DropController;
-  let binded = false;
-  let lastActiveFlag = null;
+  var Dropzone$1;
+  var DropController;
+  var binded = false;
+  var lastActiveFlag = null;
 
-  let onBind = function (el, binding, vnode) {
+  var onBind = function onBind(el, binding, vnode) {
     if (!binding.value.active) {
       lastActiveFlag = binding.value.active;
       return;
@@ -112,7 +113,7 @@
     binded = true;
   };
 
-  let onDestroy = function (el, binding, vnode) {
+  var onDestroy = function onDestroy(el, binding, vnode) {
     el.removeEventListener("dragover", DropController._onDragover);
     el.removeEventListener("drop", DropController._onDrop);
     el.removeEventListener("dragenter", Dropzone$1.onDragEnter);
@@ -120,7 +121,7 @@
     binded = false;
   };
 
-  let onUpdate = function (el, binding, vnode) {
+  var onUpdate = function onUpdate(el, binding, vnode) {
     if (binding.value.active === lastActiveFlag) return;
 
     if (!binding.value.active && binded) {
@@ -146,7 +147,7 @@
     update: onUpdate
   };
 
-  const install = function (Vue) {
+  var install = function install(Vue) {
     Vue.directive('dropzone', VueDropzone);
   };
 
