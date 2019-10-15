@@ -40,7 +40,9 @@ export default {
     plugins: [
         babel({
             exclude: 'node_modules/**',
-            presets: ['es2015-rollup']
+            babelrc: true,
+            "runtimeHelpers": true,
+            extensions: ['.js', '.es6', '.es', '.vue']
         }),
     ],
 }

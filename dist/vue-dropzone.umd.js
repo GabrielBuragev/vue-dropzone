@@ -1,53 +1,89 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue'), require('simple-dropzone')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'vue', 'simple-dropzone'], factory) :
-  (global = global || self, factory(global.VueDropzone = {}, global.Vue, global.simpleDropzone));
-}(this, function (exports, Vue, simpleDropzone) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue'), require('simple-dropzone'), require('@babel/runtime/regenerator'), require('@babel/runtime/helpers/asyncToGenerator')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'vue', 'simple-dropzone', '@babel/runtime/regenerator', '@babel/runtime/helpers/asyncToGenerator'], factory) :
+  (global = global || self, factory(global.VueDropzone = {}, global.Vue, global.simpleDropzone, global._regeneratorRuntime, global._asyncToGenerator));
+}(this, function (exports, Vue, simpleDropzone, _regeneratorRuntime, _asyncToGenerator) { 'use strict';
 
   Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
+  _regeneratorRuntime = _regeneratorRuntime && _regeneratorRuntime.hasOwnProperty('default') ? _regeneratorRuntime['default'] : _regeneratorRuntime;
+  _asyncToGenerator = _asyncToGenerator && _asyncToGenerator.hasOwnProperty('default') ? _asyncToGenerator['default'] : _asyncToGenerator;
 
-  var Dropzone = function Dropzone(params) {
-    var defaultDropzoneOptions = {
+  let Dropzone = function (params) {
+    let defaultDropzoneOptions = {
       extensions: ["pdf"],
       maxFile: 1,
-      onSuccess: function onSuccess() {},
-      onError: function onError() {},
-      onDragEnter: function onDragEnter() {},
-      onDragLeave: function onDragLeave() {}
+      onSuccess: function () {},
+      onError: function () {},
+      onDragEnter: function () {},
+      onDragLeave: function () {}
     };
-    var lastenter = void 0;
-    var fExtensionMatch = /\.([0-9a-z]+)(?:[\?#]|$)/i;
-
+    let lastenter;
+    let fExtensionMatch = /\.([0-9a-z]+)(?:[\?#]|$)/i;
     Object.assign(defaultDropzoneOptions, params);
 
-    this.onDrop = async function (_ref) {
-      var files = _ref.files;
+    this.onDrop =
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      _regeneratorRuntime.mark(function _callee({
+        files: files
+      }) {
+        var filesObjects, fObject, fileExtension, msg, file, fileBuffer;
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              defaultDropzoneOptions.onDragLeave();
+              filesObjects = files.entries();
 
-      defaultDropzoneOptions.onDragLeave();
+            case 2:
+              if (!(fObject = filesObjects.next().value)) {
+                _context.next = 14;
+                break;
+              }
 
-      var filesObjects = files.entries();
-      var fObject = void 0;
+              fileExtension = fObject[0].match(fExtensionMatch);
 
-      while (fObject = filesObjects.next().value) {
-        var fileExtension = fObject[0].match(fExtensionMatch);
-        if (!fileExtension || !defaultDropzoneOptions.extensions.includes(fileExtension[1])) {
-          var msg = ["Invalid file extension - ", fileExtension[0]].join("");
-          return defaultDropzoneOptions.onError(msg);
-        }
+              if (!(!fileExtension || !defaultDropzoneOptions.extensions.includes(fileExtension[1]))) {
+                _context.next = 7;
+                break;
+              }
 
-        var file = fObject[1];
-        var fileBuffer = await file.arrayBuffer();
-        return defaultDropzoneOptions.onSuccess(fileBuffer);
-      }
-    };
+              msg = ["Invalid file extension - ", fileExtension[0]].join("");
+              return _context.abrupt("return", defaultDropzoneOptions.onError(msg));
+
+            case 7:
+              file = fObject[1];
+              _context.next = 10;
+              return file.arrayBuffer();
+
+            case 10:
+              fileBuffer = _context.sent;
+              return _context.abrupt("return", defaultDropzoneOptions.onSuccess(fileBuffer));
+
+            case 14:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
     this.onDropStart = function () {};
+
     this.onDropError = function (msg) {
       defaultDropzoneOptions.onError(msg);
     };
+
     this.onDragEnter = function (event) {
       lastenter = event.target;
       defaultDropzoneOptions.onDragEnter();
     };
+
     this.onDragLeave = function (event) {
       if (lastenter === event.target) {
         defaultDropzoneOptions.onDragLeave();
@@ -55,64 +91,67 @@
     };
   };
 
-  var Dropzone$1 = void 0;
-  var DropController = void 0;
-  var binded = false;
-  var lastActiveFlag = null;
+  let Dropzone$1;
+  let DropController;
+  let binded = false;
+  let lastActiveFlag = null;
 
-  var onBind = function onBind(el, binding, vnode) {
-      if (!binding.value.active) {
-          lastActiveFlag = binding.value.active;
-          return;
-      }
-      DropController = new simpleDropzone.SimpleDropzone(el, document.createElement("input"));
-      Dropzone$1 = new Dropzone(binding.value ? binding.value : {});
-
-      DropController.on("drop", Dropzone$1.onDrop);
-      DropController.on("dropstart", Dropzone$1.onDropStart);
-      DropController.on("droperror", Dropzone$1.onDropError);
-      el.addEventListener("dragenter", Dropzone$1.onDragEnter);
-      el.addEventListener("dragleave", Dropzone$1.onDragLeave);
-
-      binded = true;
-  };
-  var onDestroy = function onDestroy(el, binding, vnode) {
-      el.removeEventListener("dragover", DropController._onDragover);
-      el.removeEventListener("drop", DropController._onDrop);
-      el.removeEventListener("dragenter", Dropzone$1.onDragEnter);
-      el.removeEventListener("dragleave", Dropzone$1.onDragLeave);
-      binded = false;
-  };
-  var onUpdate = function onUpdate(el, binding, vnode) {
-      if (binding.value.active === lastActiveFlag) return;
-
-      if (!binding.value.active && binded) {
-          try {
-              onDestroy(el, binding, vnode);
-          } catch (e) {
-              console.log(e);
-          }
-      } else if (binding.value.active && !binded) {
-          try {
-              onBind(el, binding, vnode);
-          } catch (e) {
-              console.log(e);
-          }
-      }
+  let onBind = function (el, binding, vnode) {
+    if (!binding.value.active) {
       lastActiveFlag = binding.value.active;
-  };
-  var VueDropzone = {
-      bind: onBind,
-      unbind: onDestroy,
-      update: onUpdate
+      return;
+    }
+
+    DropController = new simpleDropzone.SimpleDropzone(el, document.createElement("input"));
+    Dropzone$1 = new Dropzone(binding.value ? binding.value : {});
+    DropController.on("drop", Dropzone$1.onDrop);
+    DropController.on("dropstart", Dropzone$1.onDropStart);
+    DropController.on("droperror", Dropzone$1.onDropError);
+    el.addEventListener("dragenter", Dropzone$1.onDragEnter);
+    el.addEventListener("dragleave", Dropzone$1.onDragLeave);
+    binded = true;
   };
 
-  var install = function install(Vue) {
-      Vue.directive('dropzone', VueDropzone);
+  let onDestroy = function (el, binding, vnode) {
+    el.removeEventListener("dragover", DropController._onDragover);
+    el.removeEventListener("drop", DropController._onDrop);
+    el.removeEventListener("dragenter", Dropzone$1.onDragEnter);
+    el.removeEventListener("dragleave", Dropzone$1.onDragLeave);
+    binded = false;
+  };
+
+  let onUpdate = function (el, binding, vnode) {
+    if (binding.value.active === lastActiveFlag) return;
+
+    if (!binding.value.active && binded) {
+      try {
+        onDestroy(el, binding, vnode);
+      } catch (e) {
+        console.log(e);
+      }
+    } else if (binding.value.active && !binded) {
+      try {
+        onBind(el, binding, vnode);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    lastActiveFlag = binding.value.active;
+  };
+
+  var VueDropzone = {
+    bind: onBind,
+    unbind: onDestroy,
+    update: onUpdate
+  };
+
+  const install = function (Vue) {
+    Vue.directive('dropzone', VueDropzone);
   };
 
   if (window.Vue) {
-      Vue.use(install);
+    Vue.use(install);
   }
 
   VueDropzone.install = install;
