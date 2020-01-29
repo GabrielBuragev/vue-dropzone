@@ -28,8 +28,8 @@ const onDestroy = (el, binding, vnode) => {
     el.removeEventListener("drop", DropController._onDrop);
     el.removeEventListener("dragenter", Dropzone.onDragEnter);
     el.removeEventListener("dragleave", Dropzone.onDragLeave);
-    binded = false;
   }
+  binded = false;
 };
 const onUpdate = (el, binding, vnode) => {
   if (binding.value.active === lastActiveFlag) return;

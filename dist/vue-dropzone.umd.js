@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue'), require('simple-dropzone'), require('@babel/runtime/regenerator'), require('@babel/runtime/helpers/asyncToGenerator'), require('@babel/runtime/helpers/extends')) :
   typeof define === 'function' && define.amd ? define(['exports', 'vue', 'simple-dropzone', '@babel/runtime/regenerator', '@babel/runtime/helpers/asyncToGenerator', '@babel/runtime/helpers/extends'], factory) :
   (global = global || self, factory(global.VueDropzone = {}, global.Vue, global.simpleDropzone, global._regeneratorRuntime, global._asyncToGenerator, global._extends));
-}(this, function (exports, Vue, simpleDropzone, _regeneratorRuntime, _asyncToGenerator, _extends) { 'use strict';
+}(this, (function (exports, Vue, simpleDropzone, _regeneratorRuntime, _asyncToGenerator, _extends) { 'use strict';
 
   Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
   _regeneratorRuntime = _regeneratorRuntime && _regeneratorRuntime.hasOwnProperty('default') ? _regeneratorRuntime['default'] : _regeneratorRuntime;
@@ -116,10 +116,13 @@
   };
 
   var onDestroy = function onDestroy(el, binding, vnode) {
-    el.removeEventListener("dragover", DropController._onDragover);
-    el.removeEventListener("drop", DropController._onDrop);
-    el.removeEventListener("dragenter", Dropzone$1.onDragEnter);
-    el.removeEventListener("dragleave", Dropzone$1.onDragLeave);
+    if (DropController) {
+      el.removeEventListener("dragover", DropController._onDragover);
+      el.removeEventListener("drop", DropController._onDrop);
+      el.removeEventListener("dragenter", Dropzone$1.onDragEnter);
+      el.removeEventListener("dragleave", Dropzone$1.onDragLeave);
+    }
+
     binded = false;
   };
 
@@ -163,4 +166,4 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
